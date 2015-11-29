@@ -23,3 +23,11 @@ SceneNode::pSceneNode SceneNode::DetachChild(const SceneNode& node)
 	children_.erase(found);
 	return result;
 }
+
+void SceneNode::draw(sf::RenderTarget &, sf::RenderStates) const
+{
+}
+
+void SceneNode::drawCurrent(sf::RenderTarget &, sf::RenderStates) const
+{
+}
