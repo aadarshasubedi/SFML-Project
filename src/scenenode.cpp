@@ -8,17 +8,17 @@ SceneNode::SceneNode() :
 {
 }
 
-void SceneNode::AttachChild(pSceneNode child)
+void SceneNode::AttachChild(std::unique_ptr<SceneNode> child)
 {
 	child->parent_ = this;
 	children_.push_back(std::move(child));
 }
 
-SceneNode::pSceneNode SceneNode::DetachChild(const SceneNode& node)
+std::unique_ptr<SceneNode> SceneNode::DetachChild(const SceneNode& node)
 {
-	auto found = std::find_if(children_.begin(), children_.end(), [&] (pSceneNode& p) -> bool { return p.get() == &node; });
+	auto found = std::find_if(children_.begin(), children_.end(), [&node] (std::unique_ptr<SceneNode>& p) -> bool { return p.get() == &node; });
 	assert(found != children_.end());
-	pSceneNode result = std::move(*found);
+	std::unique_ptr<SceneNode> result = std::move(*found);
 	result->parent_ = nullptr;
 	children_.erase(found);
 	return result;

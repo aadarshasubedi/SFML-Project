@@ -20,7 +20,7 @@ void Game::Run(int fps)
 {
 	sf::Clock clock;
 	sf::Time  elapsedTime;
-	sf::Time  timePerFrame = sf::seconds(1.f / fps);
+	sf::Time  timePerFrame = sf::seconds(1.f / fps); // 16.7ms per frame
 
 	while (window_.isOpen())
 	{

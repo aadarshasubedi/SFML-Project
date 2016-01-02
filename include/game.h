@@ -9,11 +9,11 @@ class Game
 	Game& operator=(const Game&) = delete; //  default assignment operator to make the class non-copyable
 	Game();
 
-	void Run(int);
+	void Run(int fps);
 
 	private:
 	void ProcessEvents();
-	void Update(sf::Time);
+	void Update(sf::Time delta);
 	void Render();
 
 	private:
