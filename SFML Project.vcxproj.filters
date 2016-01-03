@@ -356,6 +356,12 @@
     <ClInclude Include="include\SpriteNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Category.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="deps\SFML\bin\libFLAC_dynamic.dll">
