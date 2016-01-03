@@ -8,26 +8,40 @@ SceneNode::SceneNode() :
 {
 }
 
-void SceneNode::AttachChild(std::unique_ptr<SceneNode> child)
+void SceneNode::AttachChild(SceneNode::Ptr child)
 {
 	child->parent_ = this;
 	children_.push_back(std::move(child));
 }
 
-std::unique_ptr<SceneNode> SceneNode::DetachChild(const SceneNode& node)
+SceneNode::Ptr SceneNode::DetachChild(const SceneNode& node)
 {
-	auto found = std::find_if(children_.begin(), children_.end(), [&node] (std::unique_ptr<SceneNode>& p) -> bool { return p.get() == &node; });
+	auto found = std::find_if(children_.begin(), children_.end(), [&node](SceneNode::Ptr& p) -> bool { return p.get() == &node; });
 	assert(found != children_.end());
-	std::unique_ptr<SceneNode> result = std::move(*found);
-	result->parent_ = nullptr;
+
+	SceneNode::Ptr child = std::move(*found);
+
+	child->parent_ = nullptr;
 	children_.erase(found);
-	return result;
+	return child;
 }
 
-void SceneNode::draw(sf::RenderTarget &, sf::RenderStates) const
+void SceneNode::draw(sf::RenderTarget & target, sf::RenderStates states) const
+{
+	states.transform *= getTransform();
+
+	drawCurrent(target, states);
+	drawChildren(target, states);
+}
+
+void SceneNode::drawCurrent(sf::RenderTarget & target, sf::RenderStates states) const
 {
 }
 
-void SceneNode::drawCurrent(sf::RenderTarget &, sf::RenderStates) const
+void SceneNode::drawChildren(sf::RenderTarget & target, sf::RenderStates states) const
 {
+	for (auto & child : children_)
+	{
+		child->draw(target, states);
+	}
 }

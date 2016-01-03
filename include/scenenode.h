@@ -1,44 +1,30 @@
 #pragma once
 
+#include <SFML/System/NonCopyable.hpp>
+#include <SFML/System/Time.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+
 #include <memory>
 #include <vector>
-
-#include <SFML/Graphics.hpp>
 
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
 {
 	public:
+	typedef std::unique_ptr<SceneNode> Ptr;
+
+	public:
 	SceneNode();
 
-	/// <summary>
-	/// Attach a child to the SceneNode
-	/// </summary>
-	/// <param name="child"></param>
-	/// <returns>void</returns>
-	void AttachChild(std::unique_ptr<SceneNode> child);
-
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="node"></param>
-	/// <returns></returns>
-	std::unique_ptr<SceneNode> DetachChild(const SceneNode& node);
+	void AttachChild(Ptr child);
+	Ptr DetachChild(const SceneNode& node);
 
 	private:
-	
-	/// <summary>
-	/// 
-	/// </summary>
-	virtual void draw(sf::RenderTarget&, sf::RenderStates) const; // inherited from sf::Drawable
-
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name=""></param>
-	/// <param name=""></param>
-	virtual void drawCurrent(sf::RenderTarget&, sf::RenderStates) const;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const final; // inherited from sf::Drawable
+	virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	private:
-	std::vector<std::unique_ptr<SceneNode>> children_;
+	std::vector<Ptr> children_;
 	SceneNode* parent_;
 };
