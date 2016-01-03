@@ -8,17 +8,17 @@
 class Game : private sf::NonCopyable
 {
 	public:
-	Game();
+						Game();
 
-	void Run(int fps);
-
-	private:
-	void ProcessEvents();
-	void Update(sf::Time delta);
-	void Render();
-	void HandleInput(sf::Keyboard::Key key, bool isPressed);
+	void				Run(int fps);
 
 	private:
-	sf::RenderWindow window_;
-	World world_;
+	void				ProcessEvents();
+	void				Update(sf::Time delta);
+	void				Render();
+	void				HandleInput(sf::Keyboard::Key key, bool isPressed);
+
+	private:
+	sf::RenderWindow	window_;
+	World				world_;
 };

@@ -1,9 +1,7 @@
 #include "Game.h"
 
-#include <iostream>
-
 Game::Game()
-	: window_(sf::VideoMode(800, 600), "Test", sf::Style::Close)
+	: window_(sf::VideoMode(800, 400), "Game", sf::Style::Close)
 	, world_(window_)
 {
 	window_.setVerticalSyncEnabled(true);
@@ -13,12 +11,12 @@ void Game::Run(int fps)
 {
 	sf::Clock clock;
 	sf::Time  elapsedTime;
-	sf::Time  timePerFrame = sf::seconds(1.f / fps); // 16.7ms per frame
+	sf::Time  timePerFrame = sf::seconds(1.0f / fps); // 16.7ms per frame
 
 	while (window_.isOpen())
 	{
-
 		elapsedTime = clock.restart();
+
 		while (elapsedTime > timePerFrame)
 		{
 			elapsedTime -= timePerFrame;
@@ -26,6 +24,7 @@ void Game::Run(int fps)
 			ProcessEvents();
 			Update(timePerFrame);
 		}
+
 		Update(elapsedTime);
 
 		Render();
@@ -63,7 +62,8 @@ void Game::Render()
 
 	world_.Draw();
 
-	window_.setView(window_.getDefaultView());
+	//window_.setView(window_.getDefaultView());
+
 	window_.display();
 }
 

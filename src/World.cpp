@@ -8,9 +8,9 @@ World::World(sf::RenderWindow & window)
 	, textures_()
 	, sceneGraph_()
 	, sceneLayers_()
-	, worldBounds_(0.0f, 0.0f, 1600.0f, worldView_.getSize().y)
+	, worldBounds_(0.0f, 0.0f, 6000.0f, worldView_.getSize().y)
 	, spawnPosition_(0.0f, worldView_.getSize().y / 2.0f)
-	, scrollSpeed_(-50.0f)
+	, scrollSpeed_(0.0f)
 	, player_(nullptr)
 {
 	LoadTextures();
@@ -28,7 +28,7 @@ void World::Update(sf::Time delta)
 
 	if (position.y <= worldBounds_.top || position.y >= worldBounds_.top + worldBounds_.height)
 	{
-		velocity.x *= -1;
+		velocity.y *= -1;
 		player_->setVelocity(velocity);
 	}
 
@@ -65,19 +65,22 @@ void World::BuildScene()
 
 	// Add background sprite to the scene
 	SpriteNode::Ptr backgroundSprite(new SpriteNode(texture, textureRect));
-	backgroundSprite->setPosition(worldBounds_.left, worldBounds_.top);
+	backgroundSprite->setPosition(worldBounds_.left - worldView_.getSize().x / 2.0f, worldBounds_.top);
 	sceneLayers_[Background]->AttachChild(std::move(backgroundSprite));
 
+	// Add player sprite to the scene
 	std::unique_ptr<Aircraft> leader(new Aircraft(Aircraft::Eagle, textures_));
 	player_ = leader.get();
 	player_->setPosition(spawnPosition_);
-	player_->setVelocity(scrollSpeed_, 40.0f);
+	player_->setVelocity(scrollSpeed_, 100.0f);
 	sceneLayers_[Air]->AttachChild(std::move(leader));
 
+	// Add escort sprite to the scene
 	std::unique_ptr<Aircraft> leftEscort(new Aircraft(Aircraft::Raptor, textures_));
 	leftEscort->setPosition(-50.0f, -50.0f);
 	player_->AttachChild(std::move(leftEscort));
 
+	// Add escort sprite to the scene
 	std::unique_ptr<Aircraft> rightEscort(new Aircraft(Aircraft::Raptor, textures_));
 	rightEscort->setPosition(-50.0f, 50.0f);
 	player_->AttachChild(std::move(rightEscort));
