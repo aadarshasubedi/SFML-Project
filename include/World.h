@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Aircraft.h"
+#include "Command.h"
+#include "CommandQueue.h"
 #include "ResourceManager.h"
 #include "ResourceTypes.h"
 #include "SceneNode.h"
@@ -24,6 +26,7 @@ class World : private sf::NonCopyable
 
 	void								Update(sf::Time delta);
 	void								Draw();
+	CommandQueue &						getCommandQueue() const; 
 
 	private:
 	void								LoadTextures();
@@ -38,6 +41,7 @@ class World : private sf::NonCopyable
 
 	SceneNode							sceneGraph_;
 	std::array<SceneNode*, LayerCount>	sceneLayers_;
+	CommandQueue						commandQueue_;
 
 	sf::FloatRect						worldBounds_;
 	sf::Vector2f						spawnPosition_;

@@ -32,6 +32,11 @@ void World::Update(sf::Time delta)
 		player_->setVelocity(velocity);
 	}
 
+	while (!commandQueue_.Empty())
+	{
+		sceneGraph_.onCommand(commandQueue_.Pop(), delta);
+	}
+
 	sceneGraph_.Update(delta);
 }
 
@@ -39,6 +44,11 @@ void World::Draw()
 {
 	window_.setView(worldView_);
 	window_.draw(sceneGraph_);
+}
+
+CommandQueue & World::getCommandQueue() const
+{
+	return commandQueue_;
 }
 
 void World::LoadTextures()
