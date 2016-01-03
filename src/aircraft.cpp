@@ -1,5 +1,5 @@
-#include "aircraft.h"
-#include "resourcemanager.h"
+#include "Aircraft.h"
+#include "ResourceManager.h"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>

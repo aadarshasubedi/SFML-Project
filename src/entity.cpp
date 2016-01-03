@@ -1,4 +1,4 @@
-#include "entity.h"
+#include "Entity.h"
 
 void Entity::setVelocity(sf::Vector2f velocity)
 {
@@ -14,4 +14,9 @@ void Entity::setVelocity(float vx, float vy)
 sf::Vector2f Entity::getVelocity() const
 {
 	return velocity_;
+}
+
+void Entity::UpdateCurrent(sf::Time delta)
+{
+	sf::Transformable::move(velocity_ * delta.asSeconds());
 }

@@ -1,10 +1,18 @@
-#include "game.h"
+#include "Game.h"
+
+#include <iostream>
 
 int main()
 {
-	Game game;
-
-	game.Run(60);
+	try
+	{
+		Game game;
+		game.Run(60);
+	}
+	catch (std::exception & e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
 	return 0;
 }

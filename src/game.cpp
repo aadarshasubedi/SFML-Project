@@ -1,19 +1,12 @@
-#include "game.h"
+#include "Game.h"
 
 #include <iostream>
 
-Game::Game() :
-	window_(sf::VideoMode(800, 600), "Test"),
-	texture_(),
-	player_()
+Game::Game()
+	: window_(sf::VideoMode(800, 600), "Test", sf::Style::Close)
+	, world_(window_)
 {
 	window_.setVerticalSyncEnabled(true);
-	if (!texture_.loadFromFile("assets/player.png"))
-	{
-		std::cout << "Could not load texture from file" << std::endl;
-	}
-	player_.setTexture(texture_);
-	player_.setPosition(100.f, 100.f);
 }
 
 void Game::Run(int fps)
@@ -24,12 +17,13 @@ void Game::Run(int fps)
 
 	while (window_.isOpen())
 	{
-		ProcessEvents();
 
 		elapsedTime = clock.restart();
 		while (elapsedTime > timePerFrame)
 		{
 			elapsedTime -= timePerFrame;
+
+			ProcessEvents();
 			Update(timePerFrame);
 		}
 		Update(elapsedTime);
@@ -43,54 +37,36 @@ void Game::ProcessEvents()
 	sf::Event event;
 	while (window_.pollEvent(event))
 	{
-		if (event.type == sf::Event::Closed)
+		switch (event.type)
 		{
-			window_.close();
-		}
-		/*else if (event.type == sf::Event::KeyPressed)
-		{
-			if (event.key.code == sf::Keyboard::Escape)
-			{
+			case sf::Event::KeyPressed:
+				HandleInput(event.key.code, true);
+				break;
+			case sf::Event::KeyReleased:
+				HandleInput(event.key.code, false);
+				break;
+			case sf::Event::Closed:
 				window_.close();
-			}
-			else if (event.key.code == sf::Keyboard::Up)
-			{
-				player_.isMoving = true;
-			}
-			else if (event.key.code == sf::Keyboard::Left)
-			{
-				player_.rotation = -1;
-			}
-			else if (event.key.code == sf::Keyboard::Right)
-			{
-				player_.rotation = 1;
-			}
+				break;
 		}
-		else if (event.type == sf::Event::KeyReleased)
-		{
-			if (event.key.code == sf::Keyboard::Up)
-			{
-				player_.isMoving = false;
-			}
-			else if (event.key.code == sf::Keyboard::Left)
-			{
-				player_.rotation = 0;
-			}
-			else if (event.key.code == sf::Keyboard::Right)
-			{
-				player_.rotation = 0;
-			}
-		}*/
 	}
 }
 
-void Game::Update(sf::Time deltaTime)
+void Game::Update(sf::Time delta)
 {
+	world_.Update(delta);
 }
 
 void Game::Render()
 {
 	window_.clear();
-	window_.draw(player_);
+
+	world_.Draw();
+
+	window_.setView(window_.getDefaultView());
 	window_.display();
+}
+
+void Game::HandleInput(sf::Keyboard::Key key, bool isPressed)
+{
 }

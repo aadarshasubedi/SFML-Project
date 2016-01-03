@@ -1,12 +1,13 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "World.h"
 
-class Game
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+
+class Game : private sf::NonCopyable
 {
 	public:
-	Game(const Game&) = delete;				// delete the default copy constructor and the
-	Game& operator=(const Game&) = delete; //  default assignment operator to make the class non-copyable
 	Game();
 
 	void Run(int fps);
@@ -15,9 +16,9 @@ class Game
 	void ProcessEvents();
 	void Update(sf::Time delta);
 	void Render();
+	void HandleInput(sf::Keyboard::Key key, bool isPressed);
 
 	private:
 	sf::RenderWindow window_;
-	sf::Texture texture_;
-	sf::Sprite player_;
+	World world_;
 };

@@ -9,7 +9,7 @@ namespace Textures
 {
 	enum ID
 	{
-		Eagle, Raptor
+		Eagle, Raptor, Desert
 	};
 }
 

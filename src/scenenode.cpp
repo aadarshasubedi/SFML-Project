@@ -1,4 +1,4 @@
-#include "scenenode.h"
+#include "SceneNode.h"
 
 #include <algorithm>
 #include <cassert>
@@ -36,6 +36,7 @@ void SceneNode::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void SceneNode::drawCurrent(sf::RenderTarget & target, sf::RenderStates states) const
 {
+	// Implemented by sub-classes
 }
 
 void SceneNode::drawChildren(sf::RenderTarget & target, sf::RenderStates states) const
@@ -44,4 +45,40 @@ void SceneNode::drawChildren(sf::RenderTarget & target, sf::RenderStates states)
 	{
 		child->draw(target, states);
 	}
+}
+
+void SceneNode::Update(sf::Time delta)
+{
+	UpdateCurrent(delta);
+	UpdateChildren(delta);
+}
+
+void SceneNode::UpdateCurrent(sf::Time delta)
+{
+	// Implemented by sub-classes
+}
+
+void SceneNode::UpdateChildren(sf::Time delta)
+{
+	for (auto & child : children_)
+	{
+		child->Update(delta);
+	}
+}
+
+sf::Vector2f SceneNode::getWorldPosition() const
+{
+	return getWorldTransform() * sf::Vector2f();;
+}
+
+sf::Transform SceneNode::getWorldTransform() const
+{
+	sf::Transform transform = sf::Transform::Identity;
+
+	for (const SceneNode * node = this; node != nullptr; node = node->parent_)
+	{
+		transform = node->getTransform() * transform;
+	}
+
+	return transform;
 }
