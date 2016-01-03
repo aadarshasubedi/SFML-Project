@@ -17,6 +17,7 @@ struct Command
 	unsigned int								category;
 };
 
+// DerivedAction prevent us to downcast each time we call a node (?)
 template <typename Object, typename Function>
 std::function<void(SceneNode&, sf::Time)> DerivedAction(Function fct)
 {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Player.h"
 #include "World.h"
 
 #include <SFML/Window/Keyboard.hpp>
@@ -17,7 +18,7 @@ class Game : private sf::NonCopyable
 	void				Run(int fps);
 
 	private:
-	void				ProcessEvents();
+	void				ProcessInput();
 	void				Update(sf::Time delta);
 	void				Render();
 	void				HandleInput(sf::Keyboard::Key key, bool isPressed);
@@ -25,6 +26,7 @@ class Game : private sf::NonCopyable
 	private:
 	sf::RenderWindow	window_;
 	World				world_;
+	Player				player_;
 
 	private: // For displaying statistics
 	void					UpdateStatistics(sf::Time delta);

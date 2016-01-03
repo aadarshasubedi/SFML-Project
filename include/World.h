@@ -26,7 +26,7 @@ class World : private sf::NonCopyable
 
 	void								Update(sf::Time delta);
 	void								Draw();
-	CommandQueue &						getCommandQueue() const; 
+	CommandQueue &						getCommandQueue(); 
 
 	private:
 	void								LoadTextures();
@@ -46,5 +46,5 @@ class World : private sf::NonCopyable
 	sf::FloatRect						worldBounds_;
 	sf::Vector2f						spawnPosition_;
 	float								scrollSpeed_;
-	Aircraft *							player_;
+	Aircraft *							playerAircraft_;
 };

@@ -8,12 +8,12 @@ Textures::ID toTextureID(Aircraft::Type type)
 {
 	switch (type)
 	{
-		case Aircraft::Eagle:
-			return Textures::Eagle;
-		case Aircraft::Raptor:
-			return Textures::Raptor;
+		case Aircraft::Player:
+			return Textures::Player;
+		case Aircraft::Enemy:
+			return Textures::Enemy;
 	}
-	return Textures::Eagle;
+	return Textures::Player;
 }
 
 Aircraft::Aircraft(Type type, const TextureManager & textures) :
@@ -32,7 +32,7 @@ uint32_t Aircraft::getCategory() const
 {
 	switch (type_)
 	{
-		case Eagle:
+		case Player:
 			return Category::Player;
 		default:
 			return Category::Enemy;

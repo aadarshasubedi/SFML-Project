@@ -31,7 +31,7 @@ void Game::Run(int fps)
 		{
 			elapsedTime -= timePerFrame;
 
-			ProcessEvents();
+			ProcessInput();
 			Update(timePerFrame);
 		}
 
@@ -42,24 +42,22 @@ void Game::Run(int fps)
 	}
 }
 
-void Game::ProcessEvents()
+void Game::ProcessInput()
 {
+	CommandQueue & commands = world_.getCommandQueue();
+
 	sf::Event event;
 	while (window_.pollEvent(event))
 	{
-		switch (event.type)
+		player_.HandleEvent(event, commands);
+
+		if (event.type == sf::Event::Closed)
 		{
-			case sf::Event::KeyPressed:
-				HandleInput(event.key.code, true);
-				break;
-			case sf::Event::KeyReleased:
-				HandleInput(event.key.code, false);
-				break;
-			case sf::Event::Closed:
-				window_.close();
-				break;
+			window_.close();
 		}
 	}
+
+	player_.HandleInput(commands);
 }
 
 void Game::Update(sf::Time delta)

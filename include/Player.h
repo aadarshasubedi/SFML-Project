@@ -29,6 +29,7 @@ class Player
 	sf::Keyboard::Key						getAssignedKey(Action action) const;
 
 	private:
+	void									InitBindings();
 	void									InitActions();
 	static bool								isRealTimeAction(Action action);
 

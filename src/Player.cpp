@@ -8,14 +8,13 @@
 
 struct AircraftMover
 {
-	AircraftMover(float vx, float vy)
-		: velocity(vx, vy)
+	AircraftMover(float vx, float vy): velocity(vx, vy)
 	{
 	}
 
 	void operator() (Aircraft& aircraft, sf::Time) const
 	{
-		//aircraft.Accelerate(velocity);
+		aircraft.Accelerate(velocity);
 	}
 
 	sf::Vector2f velocity;
@@ -23,11 +22,7 @@ struct AircraftMover
 
 Player::Player()
 {
-	keyBinding_[sf::Keyboard::Left] = MoveLeft;
-	keyBinding_[sf::Keyboard::Right] = MoveRight;
-	keyBinding_[sf::Keyboard::Up] = MoveUp;
-	keyBinding_[sf::Keyboard::Down] = MoveDown;
-
+	InitBindings();
 	InitActions();
 
 	for (auto & pair : actionBinding_)
@@ -83,6 +78,14 @@ sf::Keyboard::Key Player::getAssignedKey(Action action) const
 	}
 
 	return sf::Keyboard::Unknown;
+}
+
+void Player::InitBindings()
+{
+	keyBinding_[sf::Keyboard::Left] = MoveLeft;
+	keyBinding_[sf::Keyboard::Right] = MoveRight;
+	keyBinding_[sf::Keyboard::Up] = MoveUp;
+	keyBinding_[sf::Keyboard::Down] = MoveDown;
 }
 
 void Player::InitActions()
