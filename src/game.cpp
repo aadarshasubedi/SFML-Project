@@ -3,8 +3,18 @@
 Game::Game()
 	: window_(sf::VideoMode(800, 400), "Game", sf::Style::Close)
 	, world_(window_)
+	, font_()
+	, statisticsText_()
+	, statisticsUpdateTime_()
+	, statisticsNumFrames_(0)
 {
 	window_.setVerticalSyncEnabled(true);
+
+	font_.loadFromFile("assets/arial.ttf");
+	statisticsText_.setFont(font_);
+	statisticsText_.setPosition(5.f, 5.f);
+	statisticsText_.setCharacterSize(10);
+	statisticsText_.setFillColor(sf::Color::Black);
 }
 
 void Game::Run(int fps)
@@ -26,6 +36,7 @@ void Game::Run(int fps)
 		}
 
 		Update(elapsedTime);
+		UpdateStatistics(timePerFrame);
 
 		Render();
 	}
@@ -61,12 +72,29 @@ void Game::Render()
 	window_.clear();
 
 	world_.Draw();
-
-	//window_.setView(window_.getDefaultView());
+	window_.setView(window_.getDefaultView());
+	window_.draw(statisticsText_);
 
 	window_.display();
 }
 
 void Game::HandleInput(sf::Keyboard::Key key, bool isPressed)
 {
+	if (!isPressed && key == sf::Keyboard::Escape)
+	{
+		window_.close();
+	}
+}
+
+void Game::UpdateStatistics(sf::Time delta)
+{
+	statisticsUpdateTime_ += delta;
+	statisticsNumFrames_ += 1;
+
+	if (statisticsUpdateTime_ >= sf::seconds(1.0f))
+	{
+		statisticsText_.setString(std::to_string(statisticsNumFrames_) + " fps");
+		statisticsUpdateTime_ -= sf::seconds(1.0f);
+		statisticsNumFrames_ = 0;
+	}
 }

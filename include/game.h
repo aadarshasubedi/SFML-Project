@@ -5,6 +5,10 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include <SFML/System/Time.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
+
 class Game : private sf::NonCopyable
 {
 	public:
@@ -21,4 +25,11 @@ class Game : private sf::NonCopyable
 	private:
 	sf::RenderWindow	window_;
 	World				world_;
+
+	private: // For displaying statistics
+	void					UpdateStatistics(sf::Time delta);
+	sf::Font				font_;
+	sf::Text				statisticsText_;
+	sf::Time				statisticsUpdateTime_;
+	std::size_t				statisticsNumFrames_;
 };
