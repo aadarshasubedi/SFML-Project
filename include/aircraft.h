@@ -14,6 +14,8 @@ class Aircraft : public Entity
 	explicit		Aircraft(Type type, const TextureManager & textures);
 	virtual void	drawCurrent(sf::RenderTarget & target, sf::RenderStates states) const;
 
+	virtual uint32_t getCategory() const;
+
 	private:
 	Type			type_;
 	sf::Sprite		sprite_;

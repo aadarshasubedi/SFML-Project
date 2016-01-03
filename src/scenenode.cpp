@@ -1,5 +1,7 @@
 #include "SceneNode.h"
 
+#include "Command.h"
+
 #include <algorithm>
 #include <cassert>
 
@@ -81,4 +83,22 @@ sf::Transform SceneNode::getWorldTransform() const
 	}
 
 	return transform;
+}
+
+void SceneNode::onCommand(const Command & command, sf::Time delta)
+{
+	if (command.category & getCategory())
+	{
+		command.action(*this, delta);
+	}
+
+	for (auto & child : children_)
+	{
+		child->onCommand(command, delta);
+	}
+}
+
+uint32_t SceneNode::getCategory() const
+{
+	return Category::Scene;
 }
