@@ -8,10 +8,10 @@ World::World(sf::RenderWindow & window)
 	, textures_()
 	, sceneGraph_()
 	, sceneLayers_()
-	, worldBounds_(0.0f, 0.0f, 6000.0f, worldView_.getSize().y)
+	, worldBounds_(0.0f, 0.0f, worldView_.getSize().x, worldView_.getSize().y)
 	, spawnPosition_(0.0f, worldView_.getSize().y / 2.0f)
 	, scrollSpeed_(0.0f)
-	, playerAircraft_(nullptr)
+	, playerCowboy_(nullptr)
 {
 	LoadTextures();
 	BuildScene();
@@ -22,7 +22,7 @@ World::World(sf::RenderWindow & window)
 void World::Update(sf::Time delta)
 {
 	worldView_.move(scrollSpeed_ * delta.asSeconds(), 0.0f);
-	playerAircraft_->setVelocity(0.0f, 0.0f);
+	playerCowboy_->setVelocity(0.0f, 0.0f);
 
 	while (!commandQueue_.Empty())
 	{
@@ -30,10 +30,10 @@ void World::Update(sf::Time delta)
 	}
 
 	// Adapt player velocity in case it goes diagonally
-	sf::Vector2f velocity = playerAircraft_->getVelocity();
+	sf::Vector2f velocity = playerCowboy_->getVelocity();
 	if (velocity.x != 0.0f && velocity.y != 0.0f)
-		playerAircraft_->setVelocity(velocity / std::sqrtf(2.0f));
-	playerAircraft_->Accelerate(scrollSpeed_, 0.0f);
+		playerCowboy_->setVelocity(velocity / std::sqrtf(2.0f));
+	playerCowboy_->Accelerate(scrollSpeed_, 0.0f);
 
 	sceneGraph_.Update(delta);
 
@@ -78,10 +78,10 @@ void World::BuildScene()
 	sceneLayers_[Background]->AttachChild(std::move(backgroundSprite));
 
 	// Add player sprite to the scene
-	std::unique_ptr<Aircraft> leader(new Aircraft(Aircraft::Player, textures_));
-	playerAircraft_ = leader.get();
-	playerAircraft_->setPosition(spawnPosition_);
-	playerAircraft_->setVelocity(scrollSpeed_, 100.0f);
+	std::unique_ptr<Cowboy> leader(new Cowboy(Cowboy::Player, textures_));
+	playerCowboy_ = leader.get();
+	playerCowboy_->setPosition(spawnPosition_);
+	playerCowboy_->setVelocity(scrollSpeed_, 100.0f);
 	sceneLayers_[Air]->AttachChild(std::move(leader));
 
 }

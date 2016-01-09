@@ -1,20 +1,20 @@
 #include "Player.h"
 
 #include "CommandQueue.h"
-#include "Aircraft.h"
+#include "Cowboy.h"
 
 #include <string>
 #include <algorithm>
 
-struct AircraftMover
+struct CowboyMover
 {
-	AircraftMover(float vx, float vy): velocity(vx, vy)
+	CowboyMover(float vx, float vy): velocity(vx, vy)
 	{
 	}
 
-	void operator() (Aircraft& aircraft, sf::Time) const
+	void operator() (Cowboy& cowboy, sf::Time) const
 	{
-		aircraft.Accelerate(velocity);
+		cowboy.Accelerate(velocity);
 	}
 
 	sf::Vector2f velocity;
@@ -92,10 +92,10 @@ void Player::InitActions()
 {
 	const float playerSpeed = 200.f;
 
-	actionBinding_[MoveLeft].action		= DerivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.0f));
-	actionBinding_[MoveRight].action	= DerivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.0f));
-	actionBinding_[MoveUp].action		= DerivedAction<Aircraft>(AircraftMover(0.0f, -playerSpeed));
-	actionBinding_[MoveDown].action		= DerivedAction<Aircraft>(AircraftMover(0.0f, +playerSpeed));
+	actionBinding_[MoveLeft].action		= DerivedAction<Cowboy>(CowboyMover(-playerSpeed, 0.0f));
+	actionBinding_[MoveRight].action	= DerivedAction<Cowboy>(CowboyMover(+playerSpeed, 0.0f));
+	actionBinding_[MoveUp].action		= DerivedAction<Cowboy>(CowboyMover(0.0f, -playerSpeed));
+	actionBinding_[MoveDown].action		= DerivedAction<Cowboy>(CowboyMover(0.0f, +playerSpeed));
 }
 
 bool Player::isRealTimeAction(Action action)

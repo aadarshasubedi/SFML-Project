@@ -1,34 +1,34 @@
-#include "Aircraft.h"
+#include "Cowboy.h"
 #include "ResourceManager.h"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 
-Textures::ID toTextureID(Aircraft::Type type)
+Textures::ID toTextureID(Cowboy::Type type)
 {
 	switch (type)
 	{
-		case Aircraft::Player:
+		case Cowboy::Player:
 			return Textures::Player;
-		case Aircraft::Enemy:
+		case Cowboy::Enemy:
 			return Textures::Enemy;
 	}
 	return Textures::Player;
 }
 
-Aircraft::Aircraft(Type type, const TextureManager & textures) :
+Cowboy::Cowboy(Type type, const TextureManager & textures) :
 	type_(type), sprite_(textures.get(toTextureID(type)))
 {
 	auto bounds = sprite_.getLocalBounds();
 	sprite_.setOrigin(bounds.width / 2.0f, bounds.height / 2.0f);
 }
 
-void Aircraft::drawCurrent(sf::RenderTarget & target, sf::RenderStates states) const
+void Cowboy::drawCurrent(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	target.draw(sprite_, states);
 }
 
-uint32_t Aircraft::getCategory() const
+uint32_t Cowboy::getCategory() const
 {
 	switch (type_)
 	{

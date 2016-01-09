@@ -144,7 +144,7 @@
   <ItemGroup>
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\SpriteNode.cpp" />
-    <ClCompile Include="src\Aircraft.cpp" />
+    <ClCompile Include="src\Cowboy.cpp" />
     <ClCompile Include="src\SceneNode.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -248,7 +248,7 @@
     <ClInclude Include="deps\SFML\include\SFML\Window\Window.hpp" />
     <ClInclude Include="deps\SFML\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="deps\SFML\include\SFML\Window\WindowStyle.hpp" />
-    <ClInclude Include="include\Aircraft.h" />
+    <ClInclude Include="include\Cowboy.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\ResourceManager.h" />
