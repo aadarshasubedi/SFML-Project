@@ -10,7 +10,7 @@
 #include <memory>
 #include <vector>
 
-struct Command;
+class Command;
 
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
 {

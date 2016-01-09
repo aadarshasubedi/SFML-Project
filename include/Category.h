@@ -2,7 +2,7 @@
 
 namespace Category
 {
-	enum Type
+	enum Type // types of nodes from the scene graph
 	{
 		None	=	0,
 		Scene	=	1 << 0,

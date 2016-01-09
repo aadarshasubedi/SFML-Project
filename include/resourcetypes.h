@@ -1,10 +1,5 @@
 #pragma once
 
-namespace sf
-{
-	class Font; class Shader; class SoundBuffer; class Texture;
-}
-
 namespace Textures
 {
 	enum ID
@@ -43,6 +38,11 @@ namespace Music
 	{
 
 	};
+}
+
+namespace sf
+{
+	class Font; class Shader; class SoundBuffer; class Texture;
 }
 
 template <typename Resource, typename Identifier> class ResourceManager;

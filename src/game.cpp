@@ -1,7 +1,7 @@
 #include "Game.h"
 
 Game::Game()
-	: window_(sf::VideoMode(800, 400), "Game", sf::Style::Close)
+	: window_(sf::VideoMode(800, 600), "Game", sf::Style::Default)
 	, world_(window_)
 	, font_()
 	, statisticsText_()

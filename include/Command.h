@@ -9,15 +9,17 @@
 
 class SceneNode;
 
-struct Command
+class Command
 {
+	public:
 	Command() : action(), category(Category::None) {}
 
 	std::function<void(SceneNode&, sf::Time)>	action;
 	unsigned int								category;
 };
 
-// DerivedAction prevent us to downcast each time we call a node (?)
+// DerivedAction prevents to downcast each time a link 
+// between an action and a command is made
 template <typename Object, typename Function>
 std::function<void(SceneNode&, sf::Time)> DerivedAction(Function fct)
 {
