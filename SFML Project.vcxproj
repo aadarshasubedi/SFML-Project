@@ -285,6 +285,7 @@
     <None Include="deps\SFML\include\SFML\System\Utf.inl" />
     <None Include="deps\SFML\include\SFML\System\Vector2.inl" />
     <None Include="deps\SFML\include\SFML\System\Vector3.inl" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="deps\SFML\lib\flac.lib" />

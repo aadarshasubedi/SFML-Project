@@ -438,6 +438,7 @@
     </None>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="deps\SFML\lib\flac.lib">

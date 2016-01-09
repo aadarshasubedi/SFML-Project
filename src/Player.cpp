@@ -6,9 +6,9 @@
 #include <string>
 #include <algorithm>
 
-struct CowboyMover
+struct PlayerMover
 {
-	CowboyMover(float vx, float vy): velocity(vx, vy)
+	PlayerMover(float vx, float vy): velocity(vx, vy)
 	{
 	}
 
@@ -22,7 +22,7 @@ struct CowboyMover
 
 Player::Player()
 {
-	InitBindings();
+	InitKeys();
 	InitActions();
 
 	for (auto & pair : actionBinding_)
@@ -80,7 +80,7 @@ sf::Keyboard::Key Player::getAssignedKey(Action action) const
 	return sf::Keyboard::Unknown;
 }
 
-void Player::InitBindings()
+void Player::InitKeys()
 {
 	keyBinding_[sf::Keyboard::Left] = MoveLeft;
 	keyBinding_[sf::Keyboard::Right] = MoveRight;
@@ -92,10 +92,10 @@ void Player::InitActions()
 {
 	const float playerSpeed = 200.f;
 
-	actionBinding_[MoveLeft].action		= DerivedAction<Cowboy>(CowboyMover(-playerSpeed, 0.0f));
-	actionBinding_[MoveRight].action	= DerivedAction<Cowboy>(CowboyMover(+playerSpeed, 0.0f));
-	actionBinding_[MoveUp].action		= DerivedAction<Cowboy>(CowboyMover(0.0f, -playerSpeed));
-	actionBinding_[MoveDown].action		= DerivedAction<Cowboy>(CowboyMover(0.0f, +playerSpeed));
+	actionBinding_[MoveLeft].action		= DerivedAction<Cowboy>(PlayerMover(-playerSpeed, 0.0f));
+	actionBinding_[MoveRight].action	= DerivedAction<Cowboy>(PlayerMover(+playerSpeed, 0.0f));
+	actionBinding_[MoveUp].action		= DerivedAction<Cowboy>(PlayerMover(0.0f, -playerSpeed));
+	actionBinding_[MoveDown].action		= DerivedAction<Cowboy>(PlayerMover(0.0f, +playerSpeed));
 }
 
 bool Player::isRealTimeAction(Action action)

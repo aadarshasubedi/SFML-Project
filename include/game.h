@@ -15,7 +15,7 @@ class Game : private sf::NonCopyable
 	public:
 						Game();
 
-	void				Run(int fps);
+	void				Run();
 
 	private:
 	void				ProcessInput();

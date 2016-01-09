@@ -9,14 +9,12 @@ World::World(sf::RenderWindow & window)
 	, sceneGraph_()
 	, sceneLayers_()
 	, worldBounds_(0.0f, 0.0f, worldView_.getSize().x, worldView_.getSize().y)
-	, spawnPosition_(0.0f, worldView_.getSize().y / 2.0f)
+	, spawnPosition_(worldView_.getSize().x / 2.0f, worldView_.getSize().y / 2.0f)
 	, scrollSpeed_(0.0f)
 	, playerCowboy_(nullptr)
 {
 	LoadTextures();
 	BuildScene();
-
-	worldView_.setCenter(spawnPosition_);
 }
 
 void World::Update(sf::Time delta)
@@ -53,7 +51,7 @@ CommandQueue & World::getCommandQueue()
 
 void World::LoadTextures()
 {
-	textures_.Load(Textures::Player,  "assets/gfx/player.png");
+	textures_.Load(Textures::Player, "assets/gfx/player.png");
 	textures_.Load(Textures::Background, "assets/gfx/background.png");
 }
 
@@ -67,21 +65,20 @@ void World::BuildScene()
 		sceneGraph_.AttachChild(std::move(layer));
 	}
 
-	// Prepare the tiled background
+	// Prepare the background
 	sf::Texture & texture = textures_.get(Textures::Background);
 	sf::IntRect textureRect(worldBounds_);
-	texture.setRepeated(true);
 
 	// Add background sprite to the scene
 	SpriteNode::Ptr backgroundSprite(new SpriteNode(texture, textureRect));
-	backgroundSprite->setPosition(worldBounds_.left - worldView_.getSize().x / 2.0f, worldBounds_.top);
+	backgroundSprite->setPosition(worldBounds_.left, worldBounds_.top);
 	sceneLayers_[Background]->AttachChild(std::move(backgroundSprite));
 
 	// Add player sprite to the scene
-	std::unique_ptr<Cowboy> leader(new Cowboy(Cowboy::Player, textures_));
-	playerCowboy_ = leader.get();
+	std::unique_ptr<Cowboy> player(new Cowboy(Cowboy::Player, textures_));
+	playerCowboy_ = player.get();
 	playerCowboy_->setPosition(spawnPosition_);
 	playerCowboy_->setVelocity(scrollSpeed_, 100.0f);
-	sceneLayers_[Air]->AttachChild(std::move(leader));
+	sceneLayers_[Air]->AttachChild(std::move(player));
 
 }

@@ -7,7 +7,7 @@ int main()
 	try
 	{
 		Game game;
-		game.Run(60);
+		game.Run();
 	}
 	catch (std::exception & e)
 	{

@@ -17,26 +17,26 @@ Game::Game()
 	statisticsText_.setFillColor(sf::Color::Black);
 }
 
-void Game::Run(int fps)
+void Game::Run()
 {
 	sf::Clock clock;
-	sf::Time  elapsedTime;
-	sf::Time  timePerFrame = sf::seconds(1.0f / fps); // 16.7ms per frame
+	sf::Time updateTime = sf::Time::Zero;
+	sf::Time  spf = sf::seconds(0.016666666667f); // 60 fps
 
 	while (window_.isOpen())
 	{
-		elapsedTime = clock.restart();
+		sf::Time dt = clock.restart();
+		updateTime += dt;
 
-		while (elapsedTime > timePerFrame)
+		while (updateTime > spf)
 		{
-			elapsedTime -= timePerFrame;
+			updateTime -= spf;
 
 			ProcessInput();
-			Update(timePerFrame);
+			Update(spf);
 		}
 
-		Update(elapsedTime);
-		UpdateStatistics(timePerFrame);
+		UpdateStatistics(dt);
 
 		Render();
 	}
