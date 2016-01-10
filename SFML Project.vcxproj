@@ -87,7 +87,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
@@ -115,7 +115,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
@@ -142,6 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\GUI\Component.cpp" />
+    <ClCompile Include="core\GUI\Container.cpp" />
+    <ClCompile Include="core\GUI\Label.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\PauseState.cpp" />
     <ClCompile Include="src\Utils.cpp" />
@@ -160,6 +163,10 @@
     <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\GUI\Button.h" />
+    <ClInclude Include="core\GUI\Component.h" />
+    <ClInclude Include="core\GUI\Container.h" />
+    <ClInclude Include="core\GUI\Label.h" />
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\CommandQueue.h" />
     <ClInclude Include="include\Category.h" />

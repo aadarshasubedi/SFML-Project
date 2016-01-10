@@ -80,5 +80,4 @@ void World::BuildScene()
 	playerCowboy_->setPosition(spawnPosition_);
 	playerCowboy_->setVelocity(scrollSpeed_, 100.0f);
 	sceneLayers_[Air]->AttachChild(std::move(player));
-
 }

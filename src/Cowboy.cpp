@@ -11,7 +11,7 @@ Textures::ID toTextureID(Cowboy::Type type)
 		case Cowboy::Player:
 			return Textures::Player;
 		case Cowboy::Enemy:
-			return Textures::Enemy;
+			return Textures::Bird;
 	}
 	return Textures::Player;
 }
