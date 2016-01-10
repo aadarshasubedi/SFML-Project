@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Utils.cpp" />
     <ClCompile Include="src\GameState.cpp" />
     <ClCompile Include="src\TitleState.cpp" />
     <ClCompile Include="src\Application.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="include\StateMachine.h" />
     <ClInclude Include="include\StateTypes.h" />
     <ClInclude Include="include\TitleState.h" />
+    <ClInclude Include="include\Utils.h" />
     <ClInclude Include="include\World.h" />
     <ClInclude Include="include\SpriteNode.h" />
     <ClInclude Include="include\Player.h" />

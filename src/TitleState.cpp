@@ -1,5 +1,6 @@
 #include "TitleState.h"
 #include "ResourceManager.h"
+#include "Utils.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -10,10 +11,11 @@ TitleState::TitleState(StateMachine & states, Context context)
 	, textEffectTime_(sf::Time::Zero)
 {
 	background_.setTexture(context.textures_->get(Textures::Title));
-
 	text_.setFont(context.fonts_->get(Fonts::Default));
 	text_.setString("Press any key to start");
-	text_.setPosition(context.window_->getView().getSize() / 2.0f);
+	CenterOrigin(text_);
+	//text_.setPosition(context.window_->getView().getSize() / 2.0f);
+
 }
 
 void TitleState::Draw()
