@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\GUI\Button.cpp" />
     <ClCompile Include="core\GUI\Component.cpp" />
     <ClCompile Include="core\GUI\Container.cpp" />
     <ClCompile Include="core\GUI\Label.cpp" />

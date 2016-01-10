@@ -78,7 +78,7 @@ void GUI::Container::Select(std::size_t index)
 
 void GUI::Container::SelectNext()
 {
-	if (!Selection)
+	if (!Selection())
 	{
 		return;
 	}
@@ -94,7 +94,7 @@ void GUI::Container::SelectNext()
 
 void GUI::Container::SelectPrev()
 {
-	if (!Selection)
+	if (!Selection())
 	{
 		return;
 	}
