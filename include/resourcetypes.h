@@ -4,7 +4,8 @@ namespace Textures
 {
 	enum ID
 	{
-		Title, Player, Bird, Background
+		Title, Player, Bird, Background,
+		ButtonDefault, ButtonSelected, ButtonPressed
 	};
 }
 

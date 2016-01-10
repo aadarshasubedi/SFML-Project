@@ -7,9 +7,9 @@
 
 GUI::Button::Button(const FontManager & fonts, const TextureManager & textures)
 	: callback_()
-	, defaultTexture_(textures.get(Textures::Title))
-	, selectedTexture_(textures.get(Textures::Title))
-	, pressedTexture_(textures.get(Textures::Title))
+	, defaultTexture_(textures.get(Textures::ButtonDefault))
+	, selectedTexture_(textures.get(Textures::ButtonSelected))
+	, pressedTexture_(textures.get(Textures::ButtonPressed))
 	, sprite_()
 	, text_("BUTTON", fonts.get(Fonts::Default), 16)
 	, toggle_(false)
@@ -63,7 +63,7 @@ void GUI::Button::Activate()
 	}
 	if (callback_)
 	{
-		Callback();
+		callback_();
 	}
 	if (!toggle_)
 	{

@@ -146,6 +146,7 @@
     <ClCompile Include="core\GUI\Component.cpp" />
     <ClCompile Include="core\GUI\Container.cpp" />
     <ClCompile Include="core\GUI\Label.cpp" />
+    <ClCompile Include="src\SettingsState.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\PauseState.cpp" />
     <ClCompile Include="src\Utils.cpp" />
@@ -274,6 +275,7 @@
     <ClInclude Include="include\ResourceManager.h" />
     <ClInclude Include="include\SceneNode.h" />
     <ClInclude Include="include\ResourceTypes.h" />
+    <ClInclude Include="include\SettingsState.h" />
     <ClInclude Include="include\State.h" />
     <ClInclude Include="include\StateMachine.h" />
     <ClInclude Include="include\StateTypes.h" />

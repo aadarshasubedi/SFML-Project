@@ -1,6 +1,7 @@
 #pragma once
 
 #include "State.h"
+#include "GUI/Container.h"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -14,11 +15,6 @@ class PauseState : public State
 	virtual bool			HandleEvent(const sf::Event & event);
 
 	private:
-	enum Options { Resume, Quit };
-	void					UpdateText();
-
-	private:
 	sf::Sprite				background_;
-	std::vector<sf::Text>	options_;
-	unsigned int			selectedOption_;
+	GUI::Container			GUIcontainer_;
 };

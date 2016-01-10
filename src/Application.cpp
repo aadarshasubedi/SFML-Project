@@ -3,6 +3,7 @@
 #include "StateTypes.h"
 #include "TitleState.h"
 #include "MenuState.h"
+#include "SettingsState.h"
 #include "GameState.h"
 #include "PauseState.h"
 
@@ -20,6 +21,9 @@ Application::Application()
 
 	fonts_.Load(Fonts::Default, "assets/cowboy.otf");
 	textures_.Load(Textures::Title, "assets/gfx/title.png");
+	textures_.Load(Textures::ButtonDefault, "assets/gfx/button_default.png");
+	textures_.Load(Textures::ButtonSelected, "assets/gfx/button_selected.png");
+	textures_.Load(Textures::ButtonPressed, "assets/gfx/button_pressed.png");
 
 	statisticsText_.setFont(fonts_.get(Fonts::Default));
 	statisticsText_.setPosition(5.0f, 5.0f);
@@ -94,6 +98,7 @@ void Application::RegisterStates()
 {
 	states_.RegisterState<TitleState>(States::Title);
 	states_.RegisterState<MenuState>(States::Menu);
+	states_.RegisterState<SettingsState>(States::Settings);
 	states_.RegisterState<GameState>(States::Game);
 	states_.RegisterState<PauseState>(States::Pause);
 }
