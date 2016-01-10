@@ -11,7 +11,7 @@ GUI::Button::Button(const FontManager & fonts, const TextureManager & textures)
 	, selectedTexture_(textures.get(Textures::ButtonSelected))
 	, pressedTexture_(textures.get(Textures::ButtonPressed))
 	, sprite_()
-	, text_("BUTTON", fonts.get(Fonts::Default), 16)
+	, text_("", fonts.get(Fonts::Default), 16)
 	, toggle_(false)
 {
 	sprite_.setTexture(defaultTexture_);

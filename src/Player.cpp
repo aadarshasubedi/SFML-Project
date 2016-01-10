@@ -56,11 +56,15 @@ void Player::HandleInput(CommandQueue & commands)
 
 void Player::AssignKey(Action action, sf::Keyboard::Key key)
 {
-	for (auto it = keyBinding_.begin(); it != keyBinding_.end(); ++it)
+	for (auto it = keyBinding_.begin(); it != keyBinding_.end();)
 	{
 		if (it->second == action)
 		{
-			keyBinding_.erase(it);
+			keyBinding_.erase(it++);
+		}
+		else
+		{
+			++it;
 		}
 	}
 

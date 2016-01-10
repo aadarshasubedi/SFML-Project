@@ -52,7 +52,7 @@ void GUI::Container::HandleEvent(const sf::Event & event)
 void GUI::Container::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
-	for (auto & child : children_)
+	for (const auto & child : children_)
 	{
 		target.draw(*child, states);
 	}

@@ -10,17 +10,20 @@ SettingsState::SettingsState(StateMachine & states, Context context)
 {
 	background_.setTexture(context.textures_->get(Textures::Title));
 
-	AddButtonLabel(Player::MoveLeft, 150.0f, "Move Left", context);
-	AddButtonLabel(Player::MoveRight, 200.0f, "Move Right", context);
+	AddButtonLabel(Player::MoveLeft, 130.0f, "Move Left", context);
+	AddButtonLabel(Player::MoveRight, 190.0f, "Move Right", context);
 	AddButtonLabel(Player::MoveUp, 250.0f, "Move Up", context);
-	AddButtonLabel(Player::MoveDown, 300.0f, "Move Down", context);
+	AddButtonLabel(Player::MoveDown, 310.0f, "Move Down", context);
 
 	UpdateLabels();
 
 	auto backButton = std::make_shared<GUI::Button>(*context.fonts_, *context.textures_);
-	backButton->setPosition(80.0f, 550.0f);
+	backButton->setPosition(550.0f, 80.0f);
 	backButton->setText("BACK");
-	backButton->setCallback(std::bind(&SettingsState::RequestPop, this));
+	backButton->setCallback([this]()
+	{
+		RequestPop();
+	});
 
 	GUIcontainer_.Pack(backButton);
 }
@@ -72,11 +75,11 @@ void SettingsState::UpdateLabels()
 {
 	Player & player = *getContext().player_;
 
-	for (unsigned int action = 0; action < Player::ActionCount; ++action)
+	for (std::size_t action = 0; action < Player::ActionCount; ++action)
 	{
 
 		sf::Keyboard::Key key = player.getAssignedKey(static_cast<Player::Action>(action));
-		bindingLabels_[action]->setText(std::to_string(key));
+		bindingLabels_[action]->setText(toString(key));
 
 	}
 }
@@ -84,12 +87,12 @@ void SettingsState::UpdateLabels()
 void SettingsState::AddButtonLabel(Player::Action action, float y, const std::string & text, Context context)
 {
 	bindingButtons_[action] = std::make_shared<GUI::Button>(*context.fonts_, *context.textures_);
-	bindingButtons_[action]->setPosition(80.0f, y);
+	bindingButtons_[action]->setPosition(250.0f, y + 5.0f);
 	bindingButtons_[action]->setText(text);
 	bindingButtons_[action]->setToggle(true);
 
 	bindingLabels_[action] = std::make_shared<GUI::Label>("", *context.fonts_);
-	bindingLabels_[action]->setPosition(300.0f, y + 15.0f);
+	bindingLabels_[action]->setPosition(500.0f, y + 25.0f);
 
 	GUIcontainer_.Pack(bindingButtons_[action]);
 	GUIcontainer_.Pack(bindingLabels_[action]);
