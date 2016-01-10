@@ -1,8 +1,9 @@
 #include "Application.h"
 #include "State.h"
 #include "StateTypes.h"
-#include "GameState.h"
 #include "TitleState.h"
+#include "GameState.h"
+#include "PauseState.h"
 
 Application::Application()
 	: window_(sf::VideoMode(800, 400), "Saloon", sf::Style::Close)
@@ -16,7 +17,7 @@ Application::Application()
 {
 	window_.setKeyRepeatEnabled(false);
 
-	fonts_.Load(Fonts::Default, "assets/arial.ttf");
+	fonts_.Load(Fonts::Default, "assets/higher.ttf");
 	textures_.Load(Textures::Title, "assets/gfx/title.png");
 
 	statisticsText_.setFont(fonts_.get(Fonts::Default));
@@ -92,7 +93,7 @@ void Application::RegisterStates()
 	states_.RegisterState<TitleState>(States::Title);
 	//states_.RegisterState<MenuState>(States::Menu);
 	states_.RegisterState<GameState>(States::Game);
-	//states_.RegisterState<PauseState>(States::Pause);
+	states_.RegisterState<PauseState>(States::Pause);
 }
 
 void Application::UpdateStatistics(sf::Time delta)

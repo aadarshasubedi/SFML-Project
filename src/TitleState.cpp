@@ -14,7 +14,7 @@ TitleState::TitleState(StateMachine & states, Context context)
 	text_.setFont(context.fonts_->get(Fonts::Default));
 	text_.setString("Press any key to start");
 	CenterOrigin(text_);
-	//text_.setPosition(context.window_->getView().getSize() / 2.0f);
+	text_.setPosition(context.window_->getView().getSize() / 2.0f);
 
 }
 

@@ -26,11 +26,11 @@ bool GameState::HandleEvent(const sf::Event & event)
 	CommandQueue & commands = world_.getCommandQueue();
 	player_.HandleEvent(event, commands);
 
-	/*if (event.type == sf::Event::KeyPressed &&
+	if (event.type == sf::Event::KeyPressed &&
 		event.key.code == sf::Keyboard::Escape)
 	{
 		RequestPush(States::Pause);
-	}*/
+	}
 
 	return true;
 }
