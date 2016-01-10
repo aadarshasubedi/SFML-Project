@@ -30,9 +30,9 @@ class StateMachine : private sf::NonCopyable
 	void		Draw();
 	void		HandleEvent(const sf::Event & event);
 
-	void		Push(States::ID stateID);
-	void		Pop();
-	void		Clear();
+	void		PushState(States::ID stateID);
+	void		PopState();
+	void		ClearState();
 
 	bool		Empty() const;
 
@@ -63,5 +63,5 @@ void StateMachine::RegisterState(States::ID stateID)
 	factories_[stateID] = [this]()
 	{
 		return State::Ptr(new T(*this, context_));
-	}
+	};
 }

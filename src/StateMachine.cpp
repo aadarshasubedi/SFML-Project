@@ -11,9 +11,10 @@ StateMachine::StateMachine(State::Context context)
 
 void StateMachine::Update(sf::Time delta)
 {
-	for (auto & state : states_)
+	// the states are updated from up to bottom : stack behavior
+	for (auto it = states_.rbegin(); it != states_.rend(); ++it)
 	{
-		if (!state->Update(delta))
+		if (!(*it)->Update(delta))
 		{
 			break;
 		}
@@ -32,9 +33,9 @@ void StateMachine::Draw()
 
 void StateMachine::HandleEvent(const sf::Event & event)
 {
-	for (auto & state : states_)
+	for (auto it = states_.rbegin(); it != states_.rend(); ++it)
 	{
-		if (!state->HandleEvent(event))
+		if (!(*it)->HandleEvent(event))
 		{
 			break;
 		}
@@ -43,17 +44,17 @@ void StateMachine::HandleEvent(const sf::Event & event)
 	ApplyPendingChanges();
 }
 
-void StateMachine::Push(States::ID stateID)
+void StateMachine::PushState(States::ID stateID)
 {
 	pendingList_.push_back(PendingChange(Action::Push, stateID));
 }
 
-void StateMachine::Pop()
+void StateMachine::PopState()
 {
 	pendingList_.push_back(PendingChange(Action::Pop));
 }
 
-void StateMachine::Clear()
+void StateMachine::ClearState()
 {
 	pendingList_.push_back(PendingChange(Action::Clear));
 }

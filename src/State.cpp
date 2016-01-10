@@ -19,17 +19,17 @@ State::~State()
 
 void State::RequestPush(States::ID stateID)
 {
-	states_->Push(stateID);
+	states_->PushState(stateID);
 }
 
 void State::RequestPop()
 {
-	states_->Pop();
+	states_->PopState();
 }
 
 void State::RequestClear()
 {
-	states_->Clear();
+	states_->ClearState();
 }
 
 State::Context State::getContext() const

@@ -4,7 +4,7 @@ namespace Textures
 {
 	enum ID
 	{
-		Player, Enemy, Background
+		Title, Player, Enemy, Background
 	};
 }
 
@@ -20,7 +20,7 @@ namespace Fonts
 {
 	enum ID
 	{
-
+		Default
 	};
 }
 
