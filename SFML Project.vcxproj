@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\PauseState.cpp" />
     <ClCompile Include="src\Utils.cpp" />
     <ClCompile Include="src\GameState.cpp" />
@@ -260,6 +261,7 @@
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameState.h" />
+    <ClInclude Include="include\MenuState.h" />
     <ClInclude Include="include\PauseState.h" />
     <ClInclude Include="include\ResourceManager.h" />
     <ClInclude Include="include\SceneNode.h" />

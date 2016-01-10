@@ -2,6 +2,7 @@
 #include "State.h"
 #include "StateTypes.h"
 #include "TitleState.h"
+#include "MenuState.h"
 #include "GameState.h"
 #include "PauseState.h"
 
@@ -17,12 +18,13 @@ Application::Application()
 {
 	window_.setKeyRepeatEnabled(false);
 
-	fonts_.Load(Fonts::Default, "assets/higher.ttf");
+	fonts_.Load(Fonts::Default, "assets/cowboy.otf");
 	textures_.Load(Textures::Title, "assets/gfx/title.png");
 
 	statisticsText_.setFont(fonts_.get(Fonts::Default));
 	statisticsText_.setPosition(5.0f, 5.0f);
-	statisticsText_.setCharacterSize(10u);
+	statisticsText_.setCharacterSize(20u);
+	statisticsText_.setFillColor(sf::Color::Black);
 
 	RegisterStates();
 	states_.PushState(States::Title);
@@ -91,7 +93,7 @@ void Application::Render()
 void Application::RegisterStates()
 {
 	states_.RegisterState<TitleState>(States::Title);
-	//states_.RegisterState<MenuState>(States::Menu);
+	states_.RegisterState<MenuState>(States::Menu);
 	states_.RegisterState<GameState>(States::Game);
 	states_.RegisterState<PauseState>(States::Pause);
 }

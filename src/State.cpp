@@ -11,10 +11,16 @@ State::Context::Context(sf::RenderWindow & window, TextureManager & textures, Fo
 State::State(StateMachine & states, Context context)
 	: states_(&states)
 	, context_(context)
+	, active_(true)
 { }
 
 State::~State()
 {
+}
+
+bool State::Active() const
+{
+	return active_;
 }
 
 void State::RequestPush(States::ID stateID)

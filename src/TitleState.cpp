@@ -45,7 +45,7 @@ bool TitleState::HandleEvent(const sf::Event & event)
 	if (event.type == sf::Event::KeyPressed)
 	{
 		RequestPop();
-		RequestPush(States::Game);
+		RequestPush(States::Menu);
 	}
 	return true;
 }

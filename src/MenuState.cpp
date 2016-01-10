@@ -1,10 +1,11 @@
-#include "PauseState.h"
+#include "MenuState.h"
 #include "ResourceManager.h"
 #include "Utils.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/View.hpp>
 
-PauseState::PauseState(StateMachine & states, Context context)
+MenuState::MenuState(StateMachine & states, Context context)
 	: State(states, context)
 	, background_()
 	, options_()
@@ -14,26 +15,28 @@ PauseState::PauseState(StateMachine & states, Context context)
 
 	sf::Font & font = context.fonts_->get(Fonts::Default);
 
-	sf::Text resumeOption;
-	resumeOption.setFont(font);
-	resumeOption.setString("RESUME");
-	CenterOrigin(resumeOption);
-	resumeOption.setPosition(context.window_->getView().getSize() / 2.0f);
-	options_.push_back(resumeOption);
+	sf::Text playOption;
+	playOption.setFont(font);
+	playOption.setString("PLAY");
+	CenterOrigin(playOption);
+	playOption.setPosition(context.window_->getView().getSize() / 2.0f);
+	options_.push_back(playOption);
 
 	sf::Text quitOption;
 	quitOption.setFont(font);
-	quitOption.setString("RETURN TO MENU");
+	quitOption.setString("QUIT");
 	CenterOrigin(quitOption);
-	quitOption.setPosition(resumeOption.getPosition() + sf::Vector2f(0.0f, 50.0f));
+	quitOption.setPosition(playOption.getPosition() + sf::Vector2f(0.0f, 50.0f));
 	options_.push_back(quitOption);
 
 	UpdateText();
 }
 
-void PauseState::Draw()
+void MenuState::Draw()
 {
 	sf::RenderWindow & window = *getContext().window_;
+
+	window.setView(window.getDefaultView());
 	window.draw(background_);
 	for (auto & text : options_)
 	{
@@ -41,12 +44,12 @@ void PauseState::Draw()
 	}
 }
 
-bool PauseState::Update(sf::Time delta)
+bool MenuState::Update(sf::Time delta)
 {
-	return false;
+	return true;
 }
 
-bool PauseState::HandleEvent(const sf::Event & event)
+bool MenuState::HandleEvent(const sf::Event & event)
 {
 	if (event.type != sf::Event::KeyPressed)
 	{
@@ -55,14 +58,14 @@ bool PauseState::HandleEvent(const sf::Event & event)
 
 	if (event.key.code == sf::Keyboard::Return)
 	{
-		if (selectedOption_ == Resume)
+		if (selectedOption_ == Play)
 		{
 			RequestPop();
+			RequestPush(States::Game);
 		}
 		else if (selectedOption_ == Quit)
 		{
-			RequestClear();
-			RequestPush(States::Menu);
+			RequestPop();
 		}
 	}
 	else if (event.key.code == sf::Keyboard::Up)
@@ -76,10 +79,10 @@ bool PauseState::HandleEvent(const sf::Event & event)
 		UpdateText();
 	}
 
-	return false;
+	return true;
 }
 
-void PauseState::UpdateText()
+void MenuState::UpdateText()
 {
 	if (options_.empty())
 	{
