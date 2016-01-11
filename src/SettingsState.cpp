@@ -92,7 +92,7 @@ void SettingsState::AddButtonLabel(Player::Action action, float y, const std::st
 	bindingButtons_[action]->setToggle(true);
 
 	bindingLabels_[action] = std::make_shared<GUI::Label>("", *context.fonts_);
-	bindingLabels_[action]->setPosition(500.0f, y + 25.0f);
+	bindingLabels_[action]->setPosition(bindingButtons_[action]->getPosition() + sf::Vector2f(210.0f, 20.0f));
 
 	GUIcontainer_.Pack(bindingButtons_[action]);
 	GUIcontainer_.Pack(bindingLabels_[action]);

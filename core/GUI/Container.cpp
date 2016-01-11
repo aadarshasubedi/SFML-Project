@@ -31,15 +31,15 @@ void GUI::Container::HandleEvent(const sf::Event & event)
 	}
 	else if (event.type == sf::Event::KeyReleased)
 	{
-		if (event.key.code == sf::Keyboard::Up)
+		if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::Z)
 		{
 			SelectPrev();
 		}
-		else if (event.key.code == sf::Keyboard::Down)
+		else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S)
 		{
 			SelectNext();
 		}
-		else if (event.key.code == sf::Keyboard::Return)
+		else if (event.key.code == sf::Keyboard::Return || event.key.code == sf::Keyboard::Space)
 		{
 			if (Selection())
 			{
@@ -87,7 +87,7 @@ void GUI::Container::SelectNext()
 	do
 	{
 		next = (next + 1) % children_.size();
-	} while (!children_[next] - Selectable());
+	} while (!children_[next]->Selectable());
 
 	Select(next);
 }
@@ -103,7 +103,7 @@ void GUI::Container::SelectPrev()
 	do
 	{
 		prev = (prev + children_.size() - 1) % children_.size();
-	} while (!children_[prev] - Selectable());
+	} while (!children_[prev]->Selectable());
 
 	Select(prev);
 }
