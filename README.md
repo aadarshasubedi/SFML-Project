@@ -2,12 +2,14 @@
 I'm learning SFML with the 'SFML Game Development' book by Moreira, Hansson and Haller. Hope to make a game out of it.
 
 ### Version
-0.0.0
 
-### Development
-
+0.0.1
 
 ### Todos
 
+- Joystick inputs
+- Audio
+- Physics (Box2D)
+- Particle Effects
 
 ### License
