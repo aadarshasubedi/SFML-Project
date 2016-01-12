@@ -42,10 +42,13 @@ bool TitleState::Update(sf::Time delta)
 
 bool TitleState::HandleEvent(const sf::Event & event)
 {
-	if (event.type == sf::Event::KeyPressed)
+	if (event.type == sf::Event::KeyReleased)
 	{
-		RequestPop();
-		RequestPush(States::Menu);
+		if (event.key.code == sf::Keyboard::Return)
+		{
+			RequestPop();
+			RequestPush(States::Menu);
+		}
 	}
 	return true;
 }
