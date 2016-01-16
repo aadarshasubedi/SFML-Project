@@ -7,9 +7,11 @@ I'm learning SFML with the 'SFML Game Development' book by Moreira, Hansson and 
 
 ### Todos
 
+- Animation
 - Joystick inputs
 - Audio
 - Physics (Box2D)
 - Particle Effects
+- Fun
 
 ### License

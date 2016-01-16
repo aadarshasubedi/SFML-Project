@@ -26,7 +26,6 @@ class Animation : public sf::Drawable, public sf::Transformable
 	void				Restart();
 	bool				Finished() const;
 
-
 	void				Update(sf::Time delta);
 
 	private:

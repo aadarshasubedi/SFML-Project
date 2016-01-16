@@ -13,11 +13,7 @@ class Player
 	public:
 	enum Action
 	{
-		MoveLeft,
-		MoveRight,
-		MoveUp,
-		MoveDown,
-		ActionCount
+		MoveLeft, MoveRight, MoveUp, MoveDown, ActionCount
 	};
 
 	public:

@@ -27,15 +27,15 @@ void World::Update(sf::Time delta)
 		sceneGraph_.onCommand(commandQueue_.Pop(), delta);
 	}
 
-	// Adapt player velocity in case it goes diagonally
+	// Adapt player velocity for diagonal movement
 	sf::Vector2f velocity = playerCharacter_->getVelocity();
 	if (velocity.x != 0.0f && velocity.y != 0.0f)
+	{
 		playerCharacter_->setVelocity(velocity / std::sqrtf(2.0f));
+	}
 	playerCharacter_->Accelerate(scrollSpeed_, 0.0f);
 
 	sceneGraph_.Update(delta);
-
-
 }
 
 void World::Draw()
