@@ -160,7 +160,6 @@
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\SceneNode.cpp" />
     <ClCompile Include="src\Entity.cpp" />
-    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateMachine.cpp" />
@@ -272,7 +271,6 @@
     <ClInclude Include="include\Character.h" />
     <ClInclude Include="include\Data.h" />
     <ClInclude Include="include\Entity.h" />
-    <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\MenuState.h" />
     <ClInclude Include="include\PauseState.h" />
