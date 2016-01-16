@@ -146,7 +146,7 @@
     <ClCompile Include="core\GUI\Component.cpp" />
     <ClCompile Include="core\GUI\Container.cpp" />
     <ClCompile Include="core\GUI\Label.cpp" />
-    <ClCompile Include="include\Data.cpp" />
+    <ClCompile Include="src\Data.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\SettingsState.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
@@ -157,7 +157,7 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\SpriteNode.cpp" />
-    <ClCompile Include="src\Cowboy.cpp" />
+    <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\SceneNode.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -269,7 +269,7 @@
     <ClInclude Include="deps\SFML\include\SFML\Window\Window.hpp" />
     <ClInclude Include="deps\SFML\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="deps\SFML\include\SFML\Window\WindowStyle.hpp" />
-    <ClInclude Include="include\Cowboy.h" />
+    <ClInclude Include="include\Character.h" />
     <ClInclude Include="include\Data.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\Game.h" />

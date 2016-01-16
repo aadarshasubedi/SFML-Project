@@ -1,8 +1,8 @@
 #include "Data.h"
 
-std::vector<CowboyData> InitCowboyData()
+std::vector<CharacterData> InitCharacterData()
 {
-	return std::vector<CowboyData>();
+	return std::vector<CharacterData>();
 }
 
 std::vector<ProjectileData> InitProjectileData()

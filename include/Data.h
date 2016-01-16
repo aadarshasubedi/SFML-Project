@@ -9,7 +9,7 @@
 #include <vector>
 #include <functional>
 
-class Cowboy;
+class Character;
 
 struct Direction
 {
@@ -22,7 +22,7 @@ struct Direction
 	float						distance;
 };
 
-struct CowboyData
+struct CharacterData
 {
 	int							life;
 	float						speed;
@@ -43,7 +43,7 @@ struct ProjectileData
 
 struct PickupData
 {
-	std::function<void(Cowboy&)> action;
+	std::function<void(Character&)> action;
 	Textures::ID				texture;
 	sf::IntRect					frame;
 };
@@ -55,7 +55,7 @@ struct ParticleData
 };
 
 
-std::vector<CowboyData>			InitCowboyData();
+std::vector<CharacterData>			InitCharacterData();
 std::vector<ProjectileData>		InitProjectileData();
 std::vector<PickupData>			InitPickupData();
 std::vector<ParticleData>		InitParticleData();

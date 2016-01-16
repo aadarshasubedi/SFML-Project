@@ -2,7 +2,7 @@
 
 #include "Command.h"
 #include "CommandQueue.h"
-#include "Cowboy.h"
+#include "Character.h"
 #include "ResourceManager.h"
 #include "ResourceTypes.h"
 #include "SceneNode.h"
@@ -46,5 +46,5 @@ class World : private sf::NonCopyable
 	sf::FloatRect						worldBounds_;
 	sf::Vector2f						spawnPosition_;
 	float								scrollSpeed_;
-	Cowboy *							playerCowboy_;
+	Character *							playerCharacter_;
 };

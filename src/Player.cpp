@@ -1,7 +1,7 @@
 #include "Player.h"
 
 #include "CommandQueue.h"
-#include "Cowboy.h"
+#include "Character.h"
 
 #include <string>
 #include <algorithm>
@@ -12,9 +12,9 @@ struct PlayerMover
 	{
 	}
 
-	void operator() (Cowboy& cowboy, sf::Time) const
+	void operator() (Character& character, sf::Time) const
 	{
-		cowboy.Accelerate(velocity);
+		character.Accelerate(velocity);
 	}
 
 	sf::Vector2f velocity;
@@ -96,10 +96,10 @@ void Player::InitActions()
 {
 	const float playerSpeed = 200.f;
 
-	actionBinding_[MoveLeft].action		= DerivedAction<Cowboy>(PlayerMover(-playerSpeed, 0.0f));
-	actionBinding_[MoveRight].action	= DerivedAction<Cowboy>(PlayerMover(+playerSpeed, 0.0f));
-	actionBinding_[MoveUp].action		= DerivedAction<Cowboy>(PlayerMover(0.0f, -playerSpeed));
-	actionBinding_[MoveDown].action		= DerivedAction<Cowboy>(PlayerMover(0.0f, +playerSpeed));
+	actionBinding_[MoveLeft].action		= DerivedAction<Character>(PlayerMover(-playerSpeed, 0.0f));
+	actionBinding_[MoveRight].action	= DerivedAction<Character>(PlayerMover(+playerSpeed, 0.0f));
+	actionBinding_[MoveUp].action		= DerivedAction<Character>(PlayerMover(0.0f, -playerSpeed));
+	actionBinding_[MoveDown].action		= DerivedAction<Character>(PlayerMover(0.0f, +playerSpeed));
 }
 
 bool Player::isRealTimeAction(Action action)
