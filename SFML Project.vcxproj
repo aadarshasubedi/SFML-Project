@@ -146,6 +146,7 @@
     <ClCompile Include="core\GUI\Component.cpp" />
     <ClCompile Include="core\GUI\Container.cpp" />
     <ClCompile Include="core\GUI\Label.cpp" />
+    <ClCompile Include="core\GUI\TextBox.cpp" />
     <ClCompile Include="src\Data.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\SettingsState.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="core\GUI\Component.h" />
     <ClInclude Include="core\GUI\Container.h" />
     <ClInclude Include="core\GUI\Label.h" />
+    <ClInclude Include="core\GUI\TextBox.h" />
     <ClInclude Include="include\Animation.h" />
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\CommandQueue.h" />
