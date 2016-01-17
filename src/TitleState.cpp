@@ -15,7 +15,7 @@ TitleState::TitleState(StateMachine & states, Context context)
 	text_.setString("Press Return to start");
 	CenterOrigin(text_);
 	text_.setPosition(context.window_->getView().getSize() / 2.0f);
-
+	text_.setFillColor(sf::Color::Black);
 }
 
 void TitleState::Draw()

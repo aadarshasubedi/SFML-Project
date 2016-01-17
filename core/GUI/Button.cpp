@@ -31,6 +31,11 @@ void GUI::Button::setText(const std::string & text)
 	CenterOrigin(text_);
 }
 
+void GUI::Button::setTextColor(sf::Color color)
+{
+	text_.setFillColor(color);
+}
+
 void GUI::Button::setToggle(bool flag)
 {
 	toggle_ = flag;

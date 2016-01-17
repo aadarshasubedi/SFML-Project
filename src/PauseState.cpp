@@ -15,6 +15,7 @@ PauseState::PauseState(StateMachine & states, Context context)
 	auto resumeButton = std::make_shared<GUI::Button>(*context.fonts_, *context.textures_);
 	resumeButton->setPosition(300, 130);
 	resumeButton->setText("RESUME");
+	resumeButton->setTextColor(sf::Color::Black);
 	resumeButton->setCallback([this]()
 	{
 		RequestPop();
@@ -23,6 +24,7 @@ PauseState::PauseState(StateMachine & states, Context context)
 	auto settingsButton = std::make_shared<GUI::Button>(*context.fonts_, *context.textures_);
 	settingsButton->setPosition(resumeButton->getPosition() + sf::Vector2f(0.0f, 63.0f));
 	settingsButton->setText("OPTIONS");
+	settingsButton->setTextColor(sf::Color::Black);
 	settingsButton->setCallback([this]()
 	{
 		RequestPush(States::Settings);
@@ -31,6 +33,7 @@ PauseState::PauseState(StateMachine & states, Context context)
 	auto toMenuButton = std::make_shared<GUI::Button>(*context.fonts_, *context.textures_);
 	toMenuButton->setPosition(settingsButton->getPosition() + sf::Vector2f(0.0f, 63.0f));
 	toMenuButton->setText("RETURN TO MENU");
+	toMenuButton->setTextColor(sf::Color::Black);
 	toMenuButton->setCallback([this]()
 	{
 		RequestClear();

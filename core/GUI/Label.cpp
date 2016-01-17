@@ -22,3 +22,8 @@ void GUI::Label::setText(const std::string & text)
 {
 	text_.setString(text);
 }
+
+void GUI::Label::setTextColor(sf::Color color)
+{
+	text_.setFillColor(color);
+}

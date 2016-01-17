@@ -23,6 +23,7 @@ namespace GUI
 
 		void					setCallback(Callback callback);
 		void					setText(const std::string & text);
+		void					setTextColor(sf::Color color);
 		void					setToggle(bool flag);
 
 		virtual bool			isSelectable() const;
