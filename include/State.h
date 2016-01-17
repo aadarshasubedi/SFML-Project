@@ -38,7 +38,7 @@ class State
 	virtual void	Draw() = 0;
 	virtual bool	Update(sf::Time delta) = 0;
 	virtual bool	HandleEvent(const sf::Event & event) = 0;
-	virtual bool	Active() const;
+	virtual bool	isActive() const;
 
 	protected:
 	void			RequestPush(States::ID stateID);

@@ -25,7 +25,7 @@ namespace GUI
 		void					setText(const std::string & text);
 		void					setToggle(bool flag);
 
-		virtual bool			Selectable() const;
+		virtual bool			isSelectable() const;
 		virtual void			Select();
 		virtual void			DeSelect();
 		virtual void			Activate();

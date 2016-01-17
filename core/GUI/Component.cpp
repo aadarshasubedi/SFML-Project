@@ -8,7 +8,7 @@ GUI::Component::Component()
 GUI::Component::~Component()
 { }
 
-bool GUI::Component::Selected() const
+bool GUI::Component::isSelected() const
 {
 	return selected_;
 }
@@ -23,7 +23,7 @@ void GUI::Component::DeSelect()
 	selected_ = false;
 }
 
-bool GUI::Component::Active() const
+bool GUI::Component::isActive() const
 {
 	return active_;
 }

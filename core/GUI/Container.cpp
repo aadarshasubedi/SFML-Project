@@ -12,20 +12,20 @@ GUI::Container::Container()
 void GUI::Container::Pack(Component::Ptr component)
 {
 	children_.push_back(component);
-	if (!Selection() && component->Selectable())
+	if (!hasFocus() && component->isSelectable())
 	{
 		Select(children_.size() - 1);
 	}
 }
 
-bool GUI::Container::Selectable() const
+bool GUI::Container::isSelectable() const
 {
 	return false;
 }
 
 void GUI::Container::HandleEvent(const sf::Event & event)
 {
-	if (Selection() && children_[selectedChild_]->Active())
+	if (hasFocus() && children_[selectedChild_]->isActive())
 	{
 		children_[selectedChild_]->HandleEvent(event);
 	}
@@ -41,7 +41,7 @@ void GUI::Container::HandleEvent(const sf::Event & event)
 		}
 		else if (event.key.code == sf::Keyboard::Return || event.key.code == sf::Keyboard::Space)
 		{
-			if (Selection())
+			if (hasFocus())
 			{
 				children_[selectedChild_]->Activate();
 			}
@@ -58,16 +58,16 @@ void GUI::Container::draw(sf::RenderTarget & target, sf::RenderStates states) co
 	}
 }
 
-bool GUI::Container::Selection() const
+bool GUI::Container::hasFocus() const
 {
 	return selectedChild_ >= 0;
 }
 
 void GUI::Container::Select(std::size_t index)
 {
-	if (children_[index]->Selectable())
+	if (children_[index]->isSelectable())
 	{
-		if (Selection())
+		if (hasFocus())
 		{
 			children_[selectedChild_]->DeSelect();
 		}
@@ -78,7 +78,7 @@ void GUI::Container::Select(std::size_t index)
 
 void GUI::Container::SelectNext()
 {
-	if (!Selection())
+	if (!hasFocus())
 	{
 		return;
 	}
@@ -87,14 +87,14 @@ void GUI::Container::SelectNext()
 	do
 	{
 		next = (next + 1) % children_.size();
-	} while (!children_[next]->Selectable());
+	} while (!children_[next]->isSelectable());
 
 	Select(next);
 }
 
 void GUI::Container::SelectPrev()
 {
-	if (!Selection())
+	if (!hasFocus())
 	{
 		return;
 	}
@@ -103,7 +103,7 @@ void GUI::Container::SelectPrev()
 	do
 	{
 		prev = (prev + children_.size() - 1) % children_.size();
-	} while (!children_[prev]->Selectable());
+	} while (!children_[prev]->isSelectable());
 
 	Select(prev);
 }

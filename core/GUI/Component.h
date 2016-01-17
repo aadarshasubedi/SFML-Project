@@ -21,12 +21,12 @@ namespace GUI
 						Component();
 		virtual			~Component();
 
-		virtual bool	Selectable() const = 0;
-		virtual bool	Selected() const;
+		virtual bool	isSelectable() const = 0;
+		virtual bool	isSelected() const;
 		virtual void	Select();
 		virtual void	DeSelect();
 
-		virtual bool	Active() const;
+		virtual bool	isActive() const;
 		virtual void	Activate();
 		virtual void	DeActivate();
 

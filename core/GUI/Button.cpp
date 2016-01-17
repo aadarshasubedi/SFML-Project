@@ -36,7 +36,7 @@ void GUI::Button::setToggle(bool flag)
 	toggle_ = flag;
 }
 
-bool GUI::Button::Selectable() const
+bool GUI::Button::isSelectable() const
 {
 	return true;
 }
@@ -77,7 +77,7 @@ void GUI::Button::DeActivate()
 
 	if (toggle_)
 	{
-		if (Selected())
+		if (isSelected())
 		{
 			sprite_.setTexture(selectedTexture_);
 		}

@@ -18,7 +18,7 @@ State::~State()
 {
 }
 
-bool State::Active() const
+bool State::isActive() const
 {
 	return active_;
 }

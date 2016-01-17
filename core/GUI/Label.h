@@ -14,7 +14,7 @@ namespace GUI
 		typedef std::shared_ptr<Label> Ptr;
 
 		Label(const std::string & text, const FontManager & fonts);
-		virtual bool	Selectable() const;
+		virtual bool	isSelectable() const;
 		virtual void	HandleEvent(const sf::Event & event);
 
 		void			setText(const std::string & text);

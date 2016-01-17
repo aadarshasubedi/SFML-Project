@@ -4,7 +4,7 @@ GUI::Label::Label(const std::string & text, const FontManager & fonts)
 	: text_(text, fonts.get(Fonts::Default), 16)
 { }
 
-bool GUI::Label::Selectable() const
+bool GUI::Label::isSelectable() const
 {
 	return false;
 }

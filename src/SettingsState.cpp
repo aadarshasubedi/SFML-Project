@@ -47,7 +47,7 @@ bool SettingsState::HandleEvent(const sf::Event & event)
 
 	for (unsigned int action = 0; action < Player::ActionCount; ++action)
 	{
-		if (bindingButtons_[action]->Active())
+		if (bindingButtons_[action]->isActive())
 		{
 			isKeyBinding = true;
 			if (event.type == sf::Event::KeyReleased)

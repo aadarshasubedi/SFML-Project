@@ -12,7 +12,7 @@ TitleState::TitleState(StateMachine & states, Context context)
 {
 	background_.setTexture(context.textures_->get(Textures::Title));
 	text_.setFont(context.fonts_->get(Fonts::Default));
-	text_.setString("Press any key to start");
+	text_.setString("Press Return to start");
 	CenterOrigin(text_);
 	text_.setPosition(context.window_->getView().getSize() / 2.0f);
 
