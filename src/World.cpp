@@ -75,7 +75,7 @@ void World::BuildScene()
 	sceneLayers_[Background]->AttachChild(std::move(backgroundSprite));
 
 	// Add player sprite to the scene
-	std::unique_ptr<Character> player(new Character(textures_));
+	std::unique_ptr<Character> player(new Character(Character::Player1, textures_));
 	playerCharacter_ = player.get();
 	playerCharacter_->setPosition(spawnPosition_);
 	playerCharacter_->setVelocity(scrollSpeed_, 100.0f);

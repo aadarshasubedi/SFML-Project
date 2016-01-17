@@ -55,7 +55,7 @@ struct ParticleData
 };
 
 
-std::vector<CharacterData>			InitCharacterData();
+std::vector<CharacterData>		InitCharacterData();
 std::vector<ProjectileData>		InitProjectileData();
 std::vector<PickupData>			InitPickupData();
 std::vector<ParticleData>		InitParticleData();
